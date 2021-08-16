@@ -1,7 +1,7 @@
 require('dotenv').config()
 const execa = require('execa')
 
-const validNetworks = ['mainnet', 'rinkeby']
+const validNetworks = ['mainnet', 'rinkeby', 'kovan']
 
 async function main() {
   let network = process.env.NETWORK
