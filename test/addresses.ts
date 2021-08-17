@@ -38,6 +38,17 @@ export function getTokenAddress(tokenSymbol: string): string {
         default:
           throw new Error(`Token address not known for token ${tokenSymbol}, in network ${network}.`)
       }
+    case 'kovan':
+      switch (tokenSymbol) {
+        case 'DAI':
+          return '0x4f96fe3b7a6cf9725f59d353f723c1bdb64ca6aa'
+        case 'WETH':
+          return '0xd0a1e359811322d97991e03f863a0c30c2cf029c'
+        case 'USDC':
+          return '0x0d757FbF1b0743Db0e6e02AA2A8f18D4c695a1F9'
+        default:
+          throw new Error(`Token address not known for token ${tokenSymbol}, in network ${network}.`)
+      }
     default:
       throw new Error(`Token addresses are not known for network ${network}.`)
   }
