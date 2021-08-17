@@ -7,7 +7,7 @@ import ensureMinBalance from './utils/ensureMinBalance'
 
 const OVERRIDES = {
   gasLimit: 9.5e6,
-  gasPrice: 60e9 
+  gasPrice: 60e9
 }
 
 let signer: Signer
