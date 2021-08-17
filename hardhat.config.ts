@@ -1,8 +1,8 @@
-import { BuidlerConfig, usePlugin } from '@nomiclabs/buidler/config'
+import "@nomiclabs/hardhat-ethers";
+import { HardhatUserConfig } from "hardhat/config";
 
-usePlugin('@nomiclabs/buidler-ethers')
 
-const config: BuidlerConfig = {
+const config: HardhatUserConfig = {
   defaultNetwork: 'localhost', // Note: Network needs to be started via `yarn start-chain` with prior setup of .env variables.
   networks: {
     localhost: {
@@ -12,7 +12,7 @@ const config: BuidlerConfig = {
       timeout: 99999999
     }
   },
-  solc: {
+  solidity: {
     version: "0.5.17"
   },
   paths: {

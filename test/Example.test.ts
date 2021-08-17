@@ -1,6 +1,6 @@
 import * as assert from 'assert'
 import * as addresses from './addresses'
-import bre from '@nomiclabs/buidler'
+import hre from "hardhat"
 import { Signer, Contract } from 'ethers'
 import getDecimals from './utils/getDecimals'
 import ensureMinBalance from './utils/ensureMinBalance'
@@ -22,12 +22,12 @@ function itSuccessfullyFlashSwaps(
   it('successfully flash swaps', async () => {
     console.log(`\nTesting swap - borrows ${borrowAmount} ${tokenBorrowSymbol}, paying with ${tokenPaySymbol}`)
 
-    const amountToBorrow = bre.ethers.utils.parseUnits(borrowAmount, await getDecimals(tokenBorrowSymbol, signer))
-    const minBalance = bre.ethers.utils.parseUnits(feeCushionAmount, await getDecimals(tokenPaySymbol, signer))
+    const amountToBorrow = hre.ethers.utils.parseUnits(borrowAmount, await getDecimals(tokenBorrowSymbol, signer))
+    const minBalance = hre.ethers.utils.parseUnits(feeCushionAmount, await getDecimals(tokenPaySymbol, signer))
     await ensureMinBalance(exampleContract, tokenPaySymbol, minBalance, signer, OVERRIDES)
 
     console.log(`\nPerforming flash swap...`)
-    const bytes = bre.ethers.utils.arrayify('0x00')
+    const bytes = hre.ethers.utils.arrayify('0x00')
     await exampleContract.flashSwap(
       addresses.getTokenAddress(tokenBorrowSymbol),
       amountToBorrow,
@@ -44,13 +44,13 @@ describe('Example', () => {
     console.log('\nSetting up signer...')
 
     const signerAddress = addresses.getSignerAddress()
-    signer = bre.ethers.provider.getSigner(signerAddress)
+    signer = hre.ethers.provider.getSigner(signerAddress)
     console.log(`  signer: ${signerAddress}`)
   })
 
   before('deploy example contract', async () => {
     console.log('\nDeploying example contract...')
-    const factory = await bre.ethers.getContractFactory('ExampleContract', signer)
+    const factory = await hre.ethers.getContractFactory('ExampleContract', signer)
     exampleContract = await factory.deploy(
       addresses.getTokenAddress('DAI'),
       addresses.getTokenAddress('WETH'),
@@ -60,8 +60,8 @@ describe('Example', () => {
   })
 
   // traditional "flash loans" (these incur a 0.3% fee)
-  itSuccessfullyFlashSwaps('ETH', 'ETH', '0.01', '0.02')
-  // itSuccessfullyFlashSwaps('WETH', 'WETH', '1', '2')
+  //itSuccessfullyFlashSwaps('ETH', 'ETH', '0.01', '0.02')
+  //itSuccessfullyFlashSwaps('DAI', 'ETH', '0.1', '0.2')
   // itSuccessfullyFlashSwaps('DAI', 'DAI', '100', '4')
 
   // ETH/WETH unwrapping during traditional "flash loans" (these incur a 0.3% fee)
@@ -73,7 +73,7 @@ describe('Example', () => {
   // itSuccessfullyFlashSwaps('WETH', 'DAI', '1', '10')
 
   // ETH/WETH unwrapping with simple flash swaps (these incur a 0.3% fee)
-  // itSuccessfullyFlashSwaps('DAI', 'ETH', '100', '0.05')
+  itSuccessfullyFlashSwaps('DAI', 'ETH', '0.2', '0.05')
   // itSuccessfullyFlashSwaps('ETH', 'DAI', '1', '10')
 
   // triangular swaps (these incur a 0.6% fee)
