@@ -7,7 +7,7 @@ import ensureMinBalance from './utils/ensureMinBalance'
 
 const OVERRIDES = {
   gasLimit: 9.5e6,
-  gasPrice: 60e9
+  gasPrice: 60e9 
 }
 
 let signer: Signer
@@ -52,15 +52,15 @@ describe('Example', () => {
     console.log('\nDeploying example contract...')
     const factory = await bre.ethers.getContractFactory('ExampleContract', signer)
     exampleContract = await factory.deploy(
-      addresses.getTokenAddress('WETH'),
       addresses.getTokenAddress('DAI'),
+      addresses.getTokenAddress('WETH'),
       OVERRIDES
     )
     console.log(`  example contract: ${exampleContract.address}`)
   })
 
   // traditional "flash loans" (these incur a 0.3% fee)
-  itSuccessfullyFlashSwaps('ETH', 'ETH', '1', '2')
+  itSuccessfullyFlashSwaps('ETH', 'ETH', '0.01', '0.02')
   // itSuccessfullyFlashSwaps('WETH', 'WETH', '1', '2')
   // itSuccessfullyFlashSwaps('DAI', 'DAI', '100', '4')
 
