@@ -2,3 +2,11 @@ node_modules/
 cache/
 artifacts/
 .env
+
+# local settings
+config.js
+config.ts
+
+# IDE settings
+.idea/
+.vscode/

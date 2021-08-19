@@ -28,6 +28,13 @@ function itSuccessfullyFlashSwaps(
 
     console.log(`\nPerforming flash swap...`)
     const bytes = hre.ethers.utils.arrayify('0x00')
+    console.log(`flashSwap parameters:`)
+    console.log(` borrow from: ${addresses.getTokenAddress(tokenBorrowSymbol)}`)
+    console.log(` borrow amount: ${amountToBorrow}`)
+    console.log(` Pay with: ${addresses.getTokenAddress(tokenPaySymbol)}`)
+    console.log(` bytes: ${bytes}`)
+    console.log(`Example contract address: ${exampleContract.address}`)
+    console.log(`_userData is ${JSON.stringify(bytes)}`)
     await exampleContract.flashSwap(
       addresses.getTokenAddress(tokenBorrowSymbol),
       amountToBorrow,

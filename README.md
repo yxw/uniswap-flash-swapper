@@ -76,3 +76,18 @@ If you want to test this on Rinkeby instead of mainnet, you'll need to change [t
 4) Run `yarn start-chain`
 5) Run `yarn compile`
 6) Run `yarn test`
+
+
+## how to use (yxw)
+
+NOTE: !!DO NOT commit your "config.ts" file!!, it has been explicitly ignored in .gitginore.
+
+1) copy "config.ts.example" as "config.ts"
+2) add your testnet infura url
+3) add your private key to "accounts:[]" 
+
+The below 2 steps are used to run test on testnet instead of localhost,
+**make sure '.env' and package.json configured the same testnet "network"**.
+
+4) make sure you follow the "Testing" to start your chain
+5) run "yarn testnet" 

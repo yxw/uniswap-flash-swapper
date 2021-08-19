@@ -26,7 +26,7 @@ export function getTokenAddress(tokenSymbol: string): string {
     case 'rinkeby':
       switch (tokenSymbol) {
         case 'DAI':
-          return '0xc7AD46e0b8a400Bb3C915120d284AafbA8fc4735'
+          return '0x5592ec0cfb4dbc12d3ab100b257153436a1f0fea'
         // case 'USDC':
         //   return ''
         // case 'TUSD':

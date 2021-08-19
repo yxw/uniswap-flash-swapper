@@ -8,10 +8,12 @@
   "scripts": {
     "start-chain": "node ./scripts/start-chain.js",
     "compile": "rm -rf artifacts; hardhat compile --force",
-    "test": "hardhat test"
+    "test": "hardhat test --verbose",
+    "testnet": "hardhat test --network rinkeby --verbose"
   },
   "dependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.1",
+    "@nomiclabs/hardhat-etherscan": "^2.1.4",
     "@types/mocha": "^8.0.3",
     "@types/node": "^14.14.6",
     "dotenv": "^8.2.0",

@@ -1,0 +1,27 @@
+import { NetworksUserConfig } from "hardhat/types"
+import { EtherscanConfig } from "@nomiclabs/hardhat-etherscan/dist/src/types"
+
+export const networks: NetworksUserConfig = {
+    //Note: Network needs to be started via `yarn start-chain` with 
+    // prior setup of .env variables. 
+    localhost: {
+        url: 'http://localhost:8545',
+        gas: 9000000,
+        gasPrice: 20e9,
+        timeout: 99999999
+    },
+    rinkeby: {
+        url: `https://rinkeby.infura.io/v3/<your_project_id>`,
+        accounts: ["your_proviate_key_here"], // your private key
+        chainId: 4,
+        gas: "auto",
+        gasPrice: 1000000000, // 1 gwei
+        gasMultiplier: 1.5
+    }, 
+};
+
+// use to verify contracts on Etherscan
+// https://buidler.dev/plugins/nomiclabs-buidler-etherscan.html
+export const etherscan : EtherscanConfig = {
+    apiKey: process.env.ETHERSCAN
+};
